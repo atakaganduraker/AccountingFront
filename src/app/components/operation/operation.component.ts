@@ -10,19 +10,21 @@ import { OperationResponseModel } from 'src/app/models/operationResponseModel';
   templateUrl: './operation.component.html',
   styleUrls: ['./operation.component.css'],
 })
-export class OperationComponent implements OnInit {
-//operationResponseModel:OperationResponseModel={};
-  operations:Operation[] = [];
-  apiUrl = "https://localhost:7107/api/operation/getall";
 
+export class OperationComponent implements OnInit {
+  operations:Operation[] = [];
+  apiUrl = 'https://localhost:7107/api/operation/getall';
   constructor(private httpClient:HttpClient) {}
 
   ngOnInit(): void {
-    console.log("init çalıştı");
-    //this.httpClient
+    this.getOperations();
   }
   
   getOperations(){
-     this.httpClient.get<OperationResponseModel>(this.apiUrl)
+     this.httpClient
+     .get<OperationResponseModel>(this.apiUrl)
+     .subscribe((response)=>{
+      this.operations= response.data
+     });
   }
 }
