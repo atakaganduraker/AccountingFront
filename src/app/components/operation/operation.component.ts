@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Operation } from 'src/app/models/operation';
+import { HttpClient } from '@angular/common/http'
+import { OperationResponseModel } from 'src/app/models/operationResponseModel';
+
+//axios,fetch
 
 @Component({ 
   selector: 'app-operation',
@@ -7,10 +11,18 @@ import { Operation } from 'src/app/models/operation';
   styleUrls: ['./operation.component.css'],
 })
 export class OperationComponent implements OnInit {
-
+//operationResponseModel:OperationResponseModel={};
   operations:Operation[] = [];
+  apiUrl = "https://localhost:7107/api/operation/getall";
 
-  constructor() {}
+  constructor(private httpClient:HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("init çalıştı");
+    //this.httpClient
+  }
+  
+  getOperations(){
+     this.httpClient.get<OperationResponseModel>(this.apiUrl)
+  }
 }
