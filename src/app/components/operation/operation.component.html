@@ -1,6 +1,18 @@
+<div *ngIf="dataLoaded==false" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
 <table class ="table"> 
+  <thead>
+<tr>
+<th>ID</th>
+<th>NAME</th>
+<th>PRICE</th>
+<th>Type</th>
+<th>Company</th>
+</tr>
+  </thead>
   <tr *ngFor="let operation of operations">    
-    <td> {{operation.Id}}</td>
+    <td> {{operation.id}}</td>
     <td> {{operation.customerName}}</td>
     <td> {{operation.price}}</td>
     <td> {{operation.operationTypeId}}</td>  

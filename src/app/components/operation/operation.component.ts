@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Operation } from 'src/app/models/operation';
-import { HttpClient } from '@angular/common/http'
 import { OperationResponseModel } from 'src/app/models/operationResponseModel';
+import { OperationService } from 'src/app/services/operation.service';
 
 //axios,fetch
 
@@ -13,18 +13,20 @@ import { OperationResponseModel } from 'src/app/models/operationResponseModel';
 
 export class OperationComponent implements OnInit {
   operations:Operation[] = [];
-  apiUrl = 'https://localhost:7107/api/operation/getall';
-  constructor(private httpClient:HttpClient) {}
+  dataLoaded = false;
+
+  constructor(private operationService:OperationService) {}
 
   ngOnInit(): void {
     this.getOperations();
   }
   
   getOperations(){
-     this.httpClient
-     .get<OperationResponseModel>(this.apiUrl)
-     .subscribe((response)=>{
-      this.operations= response.data
-     });
+    this.operationService.getOperations().subscribe(response=>{
+      this.operations = response.data;
+      this.dataLoaded = true;
+
+       })
+
   }
 }

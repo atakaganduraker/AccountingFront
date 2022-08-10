@@ -1,4 +1,4 @@
 export interface Company{
-    Id:number;
+    id:number;
     categoryName:string;
 }

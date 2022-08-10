@@ -1,5 +1,5 @@
 export interface Operation{
-    Id:number;
+    id:number;
     customerName:string;
     companyId:number;
     price:number;
